@@ -75,6 +75,9 @@ struct whisper_params {
 void whisper_print_usage(int argc, char ** argv, const whisper_params & params);
 
 static bool whisper_params_parse(int argc, char ** argv, whisper_params & params) {
+    auto argv_vec = rclcpp::remove_ros_arguments(argc, argv);
+    argc = argv_vec.size();
+
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
 
