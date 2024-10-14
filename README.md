@@ -44,20 +44,37 @@ colcon build
   Type: std_msgs/msg/String\
   Outputs the detected text.
 
-## Guided mode
+## Guided Mode
 
-"Guided mode" allows you to specify a list of commands (i.e. strings) and the transcription will be guided to classify your command into one from the list. This can be useful in situations where a device is listening only for a small subset of commands.
+"Guided Mode" allows you to specify a list of commands (i.e. strings) and the transcription will be guided to classify your command into one from the list. This can be useful in situations where a device is listening only for a small subset of commands.
 
 This approach might be extremely efficient in terms of performance.
 
 ```bash
 # Run in guided mode, the list of allowed commands is in commands.txt
-ros2 run bob_whisper_cpp command -m ./models/ggml-base.en.bin -cmd ./examples/command/commands.txt
+ros2 run bob_whisper_cpp command \
+-m ./models/ggml-base.en.bin \
+-cmd ./examples/command/commands.txt
+```
+
+## Activation Prompt
+
+The "Activation Prompt" allows you to specify a prefix to identfy the beginning of a command. The prefix text will be stripped from the spoken text.
+
+```bash
+# Run with activation prompt and remaps the ROS topic to another topic name
+ros2 run bob_whisper_cpp command \
+--model ./models/ggml-base.en.bin \
+--threads 8 \
+--prompt "Hey Bob" \
+--prompt-ms 1000 \
+--vad-thold 0.7 \
+--ros-args -r command:=/bob/llm/llm_in
 ```
 
 ## Command Line Arguments
-This ROS node has no ROS parameters and has to be configured using the commandline arguments.\
-The usual `--ros-args`, e.g. for remapping, are still available.
+This ROS node has no ROS Node related parameters and has to be configured using the commandline arguments.\
+Using `--ros-args`, e.g. for topic remapping, is still possible. These args must be added at the end of the command arguments.
 
 ```bash
 # show help
