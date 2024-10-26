@@ -14,7 +14,8 @@ ros2 run bob_whisper_cpp command -m ./models/ggml-small.en.bin -t 8
 ```
 
 #### Docker Support
-This ROS node is also as Docker container available
+This ROS node is also as a pre build docker image available.\
+See below how to use it
 * [bob_whisper_cpp/docker](https://github.com/bob-ros2/bob_whisper_cpp/tree/main/bob_whisper_cpp/docker)
 
 ### Getting Models

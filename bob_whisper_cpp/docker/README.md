@@ -8,6 +8,9 @@ Related links:
 - https://ros.org
 
 ```bash
+# build the image in the docker folder
+sudo docker build --no-cache -t bob-whisper-ros:latest-humble .
+
 # run whisper ROS node with access to pulseaudio
 # starts the command node with activation prompt
 # remaps the output topic to a GPT
@@ -23,6 +26,11 @@ sudo docker run -it --net=host \
         --vad-thold 0.7 \
         --ros-args -r command:=/gpt4all/gpt_in
 ```
+## Pre Build Docker Image
+There is also a pre build image available here
 
+* https://ghcr.io/bob-ros2/bob-whisper-ros
+
+#
 > **Caution!**\
 > <font color="#F07070">Be warned that giving full access to the audio device opens the doors for unauthorized individuals to listen in on your conversations, potentially compromising your privacy and confidentiality. It is important to only grant access to trusted applications and to revoke permissions when they are no longer needed.</font>
