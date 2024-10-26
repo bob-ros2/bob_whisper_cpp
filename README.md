@@ -13,13 +13,17 @@ More infos about the origin example:
 ros2 run bob_whisper_cpp command -m ./models/ggml-small.en.bin -t 8
 ```
 
+#### Docker Support
+This ROS node is also as Docker container available
+* https://github.com/bob-ros2/bob_whisper_cpp/docker
+
 ### Models
 To get a model see here
 * [ggerganov/whisper.cpp/blob/master/models](https://github.com/ggerganov/whisper.cpp/blob/master/models/README.md)
 
 ## Dependencies
 
-* This ROS Node depends on the [whisper.cpp](https://github.com/ggerganov/whisper.cpp) project. `Whisper.cpp` is integrated as a GIT submodule and is downloaded along with cloning this package.
+* This ROS Node depends on the [whisper.cpp](https://github.com/ggerganov/whisper.cpp) project. `Whisper.cpp` is integrated as a GIT submodule and is downloaded along with cloning this package with the option `--recurse-submodules`.
 * The SDL2 library is used to capture audio from the microphone. The library can be installed like this:
 
 ```bash
@@ -31,7 +35,7 @@ sudo apt-get install libsdl2-dev
 
 ```bash
 cd <colcon_ws>/src
-git clone https://github.com/bob-ros2/bob_whisper_cpp.git
+git clone --recurse-submodules https://github.com/bob-ros2/bob_whisper_cpp.git
 cd ..
 # this builds the whisper.cpp and the bob_whisper_cpp ROS node
 colcon build
@@ -107,4 +111,5 @@ options:
   --grammar-penalty N          [100.0  ] scales down logits of nongrammar tokens
   --suppress-regex REGEX       [       ] regular expression matching tokens to suppress
 ```
+
 
