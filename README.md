@@ -17,8 +17,20 @@ ros2 run bob_whisper_cpp command -m ./models/ggml-small.en.bin -t 8
 This ROS node is also as Docker container available
 * [bob_whisper_cpp/docker](https://github.com/bob-ros2/bob_whisper_cpp/tree/main/bob_whisper_cpp/docker)
 
-### Models
-To get a model see here
+### Getting Models
+The `whisper.cpp` library has a script to download models.
+
+```bash
+# assuming you are in the home directory which contains the colcon workspace
+mkdir ./models 2>/dev/null
+./colcon_ws/src/bob_whisper_cpp/whisper.cpp/models/download-ggml-model.sh base.en ./models
+
+# run the ROS command node with the model
+ros2 run bob_whisper_cpp command -m ./models/ggml-base.en.bin -t 16 --prompt "Hey Bob" --prompt-ms 1000 --vad-thold 0.7 --ros-args -r command:=/gpt/gpt_in
+
+```
+
+To get further information see here
 * [ggerganov/whisper.cpp/blob/master/models](https://github.com/ggerganov/whisper.cpp/blob/master/models/README.md)
 
 ## Dependencies
