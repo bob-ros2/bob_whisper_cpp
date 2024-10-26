@@ -26,11 +26,14 @@ sudo docker run -it --net=host \
         --vad-thold 0.7 \
         --ros-args -r command:=/gpt4all/gpt_in
 ```
+
 ## Pre Build Docker Image
-There is also a pre build image available here
+There is also a pre build image available. Replace the image name with this one in order to use it.
 
-* https://ghcr.io/bob-ros2/bob-whisper-ros
+> ghcr.io/bob-ros2/bob-whisper-ros:latest-humble
 
-#
-> **Caution!**\
+Package path
+- https://ghcr.io/bob-ros2/bob-whisper-ros
+
+## Caution
 > <font color="#F07070">Be warned that giving full access to the audio device opens the doors for unauthorized individuals to listen in on your conversations, potentially compromising your privacy and confidentiality. It is important to only grant access to trusted applications and to revoke permissions when they are no longer needed.</font>
