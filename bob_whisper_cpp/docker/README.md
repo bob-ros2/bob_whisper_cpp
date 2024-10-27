@@ -16,7 +16,7 @@ sudo docker build --no-cache -t bob-whisper-ros:latest-humble .
 # remaps the output topic to a GPT
 sudo docker run -it --net=host \
     -v ./models:/home/ros/models \
-    -v /run/user/1000/pulse/native:/run/user/1000/pulse/native \
+pulse    -v /run/user/1000/pulse/native:/run/user/1000/pulse/native \
     -e PULSE_SERVER=unix:/run/user/1000/pulse/native \
     -e ROS_DOMAIN_ID=100 \
     bob-whisper-ros:latest-humble ros2 run bob_whisper_cpp command \
@@ -25,6 +25,17 @@ sudo docker run -it --net=host \
         --prompt-ms 1000 \
         --vad-thold 0.7 \
         --ros-args -r command:=/gpt4all/gpt_in
+```
+### Running under Windows using Pulseserver
+
+To run it with Docker Desktop under Windows a Pulseaudio server must be runnning. This was for me the most simple way to get it to work under Windows. To get Pulseaudio see one of the links below.
+- https://www.freedesktop.org/wiki/Software/PulseAudio/Download
+- https://github.com/pgaskin/pulseaudio-win32/releases
+```powershell
+# run pulseserver at the power shell
+PS .\pulseaudio-1.1\bin\pulseaudio.exe --use-pid-file=false --exit-idle-time=-1 -D
+
+# later when running the docker container use: -e PULSE_SERVER=tcp:<ip-host>
 ```
 
 ## Pre Build Docker Image
