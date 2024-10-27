@@ -16,7 +16,7 @@ sudo docker build --no-cache -t bob-whisper-ros:latest-humble .
 # remaps the output topic to a GPT
 sudo docker run -it --net=host \
     -v ./models:/home/ros/models \
-pulse    -v /run/user/1000/pulse/native:/run/user/1000/pulse/native \
+    -v /run/user/1000/pulse/native:/run/user/1000/pulse/native \
     -e PULSE_SERVER=unix:/run/user/1000/pulse/native \
     -e ROS_DOMAIN_ID=100 \
     bob-whisper-ros:latest-humble ros2 run bob_whisper_cpp command \
