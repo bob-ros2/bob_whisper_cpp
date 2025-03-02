@@ -1,4 +1,4 @@
-# ROS Package bob_whisper_cpp
+# ROS Package [bob_whisper_cpp](https://github.com/bob-ros2/bob_whisper_cpp)
 
 ## ROS Node Command
 
